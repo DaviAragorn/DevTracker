@@ -6,7 +6,7 @@ module.exports = {
         const {longitude, latitude, techs } = req.query
 
         const techsArray = parseStringAsArray(techs)
-
+        
         const devs = await Dev.find({
             techs: {
                 $in: techsArray
@@ -17,7 +17,7 @@ module.exports = {
                         type: "Point",
                         coordinates: [longitude, latitude]
                     },
-                    $maxDistance: 10000, 
+                    $maxDistance: 10000000, 
                 }
             }
         })

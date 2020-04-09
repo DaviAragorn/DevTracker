@@ -42,11 +42,11 @@ function Main({ navigation}){
             params: {
                 latitude,
                 longitude,
-                techs: 'Python',
+                techs,
             }
         })
 
-        setDevs(response.data.devs)
+        setDevs(response.data)
     }
 
     function handleRegionChange(region){
