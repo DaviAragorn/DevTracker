@@ -3,7 +3,6 @@ import api from './services/api'
 
 import './global.css';
 import './App.css';
-import './sidebar.css';
 import './main.css';
 
 import DevForm from './components/DevForm'
@@ -31,18 +30,21 @@ function App() {
   }
 
   return (
-    <div id="app">
-      <aside>
-        <strong>Cadastrar</strong>
-        <DevForm onSubmit={handleAddDev}/>
-      </aside>
-      <main>
-        <ul>
-          {devs.map(dev => (
-            <DevItem key={dev._id} dev={dev} />
-          ))}
-        </ul>
-      </main>
+    <div>
+      <img src="https://github.com/Takimiro/DevTracker/blob/master/logoname.png?raw=true" id='logo' alt='DevTracker'></img>
+      <div id="app">
+        <aside>
+          <strong>Cadastrar</strong>
+          <DevForm onSubmit={handleAddDev}/>
+        </aside>
+        <main>
+          <ul>
+            {devs.map(dev => (
+              <DevItem key={dev._id} dev={dev} />
+            ))}
+          </ul>
+        </main>
+      </div>
     </div>
   );
 }

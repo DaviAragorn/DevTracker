@@ -5,6 +5,11 @@
     padding: 0;
     outline: 0;
     box-sizing: border-box;
+    scrollbar-color: dark
+}
+
+.scrollable-element {
+    scrollbar-color: dark;
 }
 
 html, body, #root {
@@ -12,9 +17,25 @@ html, body, #root {
 }
 
 body{
-    background:#E5E6F0;
+    background:#0a0b0c;
     -webkit-font-smoothing: antialiased;
 }
+
+body::-webkit-scrollbar {
+    width: 0.5em;
+}
+   
+body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: rgb(25, 26, 27);
+    outline: 1px solid slategrey;
+    border-radius: 5px;
+
+}
+
 
 body, input, button{
     font-family: 'Roboto', sans-serif;

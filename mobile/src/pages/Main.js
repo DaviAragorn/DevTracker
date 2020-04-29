@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, Keyboard} from 'react-native'
+import { StyleSheet, Image, View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView} from 'react-native'
 import MapView, { Marker, Callout} from 'react-native-maps'
 import { requestPermissionsAsync, getCurrentPositionAsync} from 'expo-location'
 import {MaterialIcons} from '@expo/vector-icons'
 import api from '../services/api'
 import {connect, disconnect, subscribeToNewDevs} from '../services/socket'
+import mapStyle from './MapStyle'
 
 function Main({ navigation}){
 
@@ -12,9 +13,6 @@ function Main({ navigation}){
     const [currentRegion, setCurrentRegion] = useState(null)
     const [techs, setTechs] = useState('')
     useEffect(() => {
-        Keyboard.addListener("keyboardDidShow", _keyboardDidShow);
-        Keyboard.addListener("keyboardDidHide", _keyboardDidHide);
-
         async function loadInitialLocation(){
             const { granted } = await requestPermissionsAsync()
             
@@ -82,7 +80,7 @@ function Main({ navigation}){
     
     return (
         <>
-            <MapView onRegionChangeComplete={handleRegionChange} initialRegion={currentRegion} style={styles.map}>
+            <MapView onRegionChangeComplete={handleRegionChange} initialRegion={currentRegion} style={styles.map} customMapStyle={mapStyle}>
                 {devs.map(dev => (
                     <Marker key={dev._id}coordinate={{latitude:dev.location.coordinates[1], longitude:dev.location.coordinates[0]}}>
                         <Image style={styles.avatar} source={{uri: dev.avatar_url}}></Image>
@@ -100,7 +98,7 @@ function Main({ navigation}){
                 ) )}
             </MapView>
 
-            <View style= {styles.searchForm}>
+            <KeyboardAvoidingView style= {styles.searchForm} behavior='padding' keyboardVerticalOffset={110}>
                 <TextInput style={styles.searchInput}
                            placeholder="search devs by techs"
                            placeholderTextColor='#999'
@@ -111,7 +109,7 @@ function Main({ navigation}){
                 <TouchableOpacity onPress={loadDevs}style={styles.loadButton}>
                 <MaterialIcons name='my-location' size={20} color='#fff'></MaterialIcons>
                 </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
         </>
     )
 }
@@ -153,8 +151,8 @@ const styles = StyleSheet.create({
     searchInput: {
         flex: 1,
         height: 50,
-        backgroundColor: '#fff',
-        color: '#333',
+        backgroundColor: '#323538',
+        color: '#fff',
         borderRadius: 25,
         paddingHorizontal: 20,
         fontSize: 16,
