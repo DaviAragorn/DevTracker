@@ -1,0 +1,43 @@
+input {
+    background: var(--primary_color);
+}
+
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+%input-shared{
+    width: 100%;
+    height: 32px;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--tertiary_font);
+    border: 0;
+    margin: 0;
+    appearance: textfield;
+}
+
+label {
+    margin-top: 20px;
+    color: var(--secondary_font);
+    font-size: 14px;
+    font-weight: bolder;
+    display: block;    
+}
+
+.input-block input{
+    @extend %input-shared;
+    border-bottom: 1px solid rgba(87, 87, 87, 0.589);
+}
+
+.input-block-valid input{
+    @extend %input-shared;
+    border-bottom: 1px solid rgb(19, 153, 2);
+}
+
+.input-block-invalid input{
+    @extend %input-shared;
+    border-bottom: 1px solid rgb(163, 0, 0);
+}
+

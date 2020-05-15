@@ -8,6 +8,22 @@
     scrollbar-color: dark
 }
 
+:root {
+    --background_color: rgb(10, 11, 12);
+    --primary_color:  rgb(25, 26, 27);
+    --primary_font: rgb(192, 193, 194);
+    --secondary_font: #999;
+    --tertiary_font: #666;
+}
+
+[data-theme="light"]{
+    --background_color: rgb(199, 200, 201);
+    --primary_color:  rgb(250, 251, 252);
+    --primary_font: rgb(25, 26, 27);
+    --secondary_font: #333;
+    --tertiary_font: #666;
+}
+
 .scrollable-element {
     scrollbar-color: dark;
 }
@@ -17,8 +33,10 @@ html, body, #root {
 }
 
 body{
-    background:#0a0b0c;
+    background: var(--background_color);
+    text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body::-webkit-scrollbar {
@@ -30,10 +48,9 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-    background-color: rgb(25, 26, 27);
+    background-color: var(--primary_color);
     outline: 1px solid slategrey;
     border-radius: 5px;
-
 }
 
 

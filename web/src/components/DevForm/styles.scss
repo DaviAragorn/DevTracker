@@ -1,0 +1,41 @@
+aside{
+    width: 320px;
+    background: var(--primary_color);
+    box-shadow: 0 0 16px 0 rgba(0, 0, 0, 0.5);
+    border-radius: 2px;
+    padding: 30px 20px;
+}
+
+.input-group{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+}
+
+aside strong {
+    font-size: 20px;
+    font-weight: 2000;
+    text-align: center;
+    display: block;
+    color: var(--primary_font);
+}
+
+aside form {
+    margin-top: 30px;
+}
+
+aside form button[type=submit]{
+    width: 100%;
+    border: 0;
+    margin-top: 30px;
+    background: rgb(196, 10, 0);
+    padding: 15px 20px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.125s;
+}
+
+aside form button[type=submit]:hover{
+    background: #8f0700;
+}

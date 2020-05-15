@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react' 
-import './styles.css'
+import React, {useState, useEffect} from 'react'
+import InputBlock from '../InputBlock'
+import './styles.scss'
 
 function DevForm({onSubmit}){  
     const [github_username, setGithubUserName] = useState('')
@@ -10,7 +11,6 @@ function DevForm({onSubmit}){
     async function handleSubmit(e){
         e.preventDefault()
 
-        console.log('Ew')
         await onSubmit({
             github_username,
             techs,
@@ -38,55 +38,40 @@ function DevForm({onSubmit}){
             timeout: 30000,
           }
         )
-      }, [])    
+      }, [])
+
+    function notNull(value){
+      return value !== null;
+    }
+
+    function validateLatitude(value){
+      return (value !== null && (parseFloat(value) <= 90) && (parseFloat(value) >= -90));
+    }
+
+    function validateLongitude(value){
+      return (value !== null && ( parseFloat(value) <= 180) && (parseFloat(value) >= -180));
+    }
     
     return (
 
         <form onSubmit={handleSubmit}>
-          <div className="input-block">
-            <label htmlFor="github_username">Usuário do Github</label>
-            <input name="github_username"
-            id="github_username"
-            required
-            value={github_username}
-            onChange={e=> setGithubUserName(e.target.value)}/>
-          </div>
 
-          <div className="input-block">
-            <label htmlFor="techs">Tecnologias</label>
-            <input name="techs"
-            id="techs"
-            required
-            value={techs}
-            onChange={e=> setTechs(e.target.value)}/>
-          </div>
+          <InputBlock className="input-block" title="Github Username" validation={notNull} name="github_username" type="string" 
+          value={github_username} updateValue={setGithubUserName}/>
+
+          <InputBlock className="input-block" title="Technologies" validation={notNull} name="techs" type="string" 
+          value={techs} updateValue={setTechs}/>
 
           <div className="input-group">
+            <InputBlock className="input-block" title="Latitude" validation={validateLatitude} name="latitude" type="number" 
+            value={latitude} min="-90.00" max="90.00" step="any" updateValue={setLatitude}/>
 
-            <div className="input-block">
-              <label htmlFor="latitude">Latitude</label>
-              <input name="latitude"
-              type="number"
-              id="latitude"
-              required
-              value={latitude}
-              onChange={e=> setLatitude(e.target.value)}/>
-            </div>
-
-            <div className="input-block">
-              <label htmlFor="longitude">Longitude</label>
-              <input name="longitude"
-              type="number"
-              id="longitude"
-              required
-              value={longitude}
-              onChange={e=> setLongitude(e.target.value)}/>
-            </div>
-
+            <InputBlock className="input-block" title="Longitude" validation={validateLongitude} name="longitude" type="number" 
+            value={longitude} min="-180.00" max="180.00" step="any" updateValue={setLongitude}/>
           </div>
-         
+          
 
-          <button type="submit">Salvar</button>
+          <button type="submit">Submit</button>
         </form>
     )
 }
