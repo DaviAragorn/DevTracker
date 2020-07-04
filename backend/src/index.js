@@ -10,7 +10,7 @@ const server = http.Server(app)
 
 setupWebsocket(server)
 
-mongoose.connect('mongodb+srv://root:root@sandbox-3nkgy.azure.mongodb.net/test?retryWrites=true&w=majority', {
+mongoose.connect('db_key', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
